@@ -1132,3 +1132,39 @@ textarea:focus-visible,[tabindex]:focus-visible{
 /* bento portraits: 30% smaller (48% -> 34% of the tile), so the name and
    role carry the tile and the photo supports rather than dominates */
 .bcell .ph{width:34%!important;right:16px!important;bottom:16px!important}
+
+/* ══════════════════════════════════════════════════════════════════
+   Co-worker bento — layout rebuild.
+   The portrait was absolutely positioned and oversized, so every text
+   rule had been capped to 50% width to dodge it. That caused the wrapped
+   roles, the collision on the longer titles, and a ragged baseline
+   (justify-content:flex-end meant the eyebrow floated wherever the copy
+   ended). The portrait now sits in normal flow at a fixed size, the text
+   gets the full column back, and the agent pill is pinned to the bottom
+   so every card in a row shares one baseline.
+   ══════════════════════════════════════════════════════════════════ */
+.bcell{justify-content:flex-start;min-height:252px!important;padding:26px!important}
+
+.bcell .ph{position:static!important;order:1;width:78px!important;height:78px;
+  right:auto!important;bottom:auto!important;margin:0 0 18px;flex:none;
+  box-shadow:none;border:1px solid rgba(255,255,255,.18)}
+.bcell.lt .ph{border-color:rgba(0,0,0,.14)}
+
+.bcell em{order:2;max-width:none!important;margin-bottom:8px}
+.bcell b{order:3;max-width:none!important;font-size:25px!important;line-height:1.05}
+.bcell span.rl{order:4;max-width:26ch!important;font-size:13px!important;margin-top:6px;
+  line-height:1.4;text-wrap:pretty}
+.bcell u{order:5;margin-top:auto;padding-top:4px}
+
+/* the portrait lifts on hover instead of scaling into its neighbour */
+.bcell:hover .ph{transform:none}
+@media (hover:hover) and (pointer:fine){
+  .bcell{transition:background-color .2s var(--e)}
+  .bcell .ph{transition:transform .22s var(--e)}
+  .bcell:hover .ph{transform:translateY(-2px)}}
+
+@media (max-width:900px){
+  .bento{grid-template-columns:repeat(2,1fr)!important}}
+@media (max-width:560px){
+  .bento{grid-template-columns:1fr!important}
+  .bcell{min-height:0!important}}
