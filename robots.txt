@@ -1,0 +1,4 @@
+# Staging1 — parallel staging environment. Not the production site.
+# Search engines must not index this build; litecone.ai is canonical.
+User-agent: *
+Disallow: /

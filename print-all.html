@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#FAFAF7" media="(prefers-color-scheme: light)">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<title>Print pack, all pages | LiteCone</title>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..900&family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,400..900&family=Manrope:wght@400;500;600;700;800&family=Source+Sans+3:wght@400;500;600;700;900&family=Inter+Tight:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script>(function(){try{var t=localStorage.getItem('lc-theme');if(t==='light'||t==='dark')document.documentElement.setAttribute('data-theme',t);}catch(e){}})();</script>
+<style>
+:root{ --pp-ink:#0A0A0A; --pp-or:#E45A0B; --pp-hair:#DFE2E6; }
+
+/* toolbar */
+.pp-bar{position:sticky;top:0;z-index:200;background:var(--pp-ink);color:#fff;
+  display:flex;align-items:center;gap:16px;flex-wrap:wrap;padding:12px clamp(16px,4vw,44px);
+  font-family:'Inter',system-ui,sans-serif;font-size:14px}
+.pp-bar h1{font-size:15px;font-weight:700;margin:0;letter-spacing:-.01em}
+.pp-bar .sp{flex:1}
+.pp-btn{appearance:none;border:0;cursor:pointer;border-radius:6px;padding:10px 20px;
+  font:600 14px/1 'Inter',system-ui,sans-serif;background:var(--pp-or);color:#fff}
+.pp-btn[disabled]{opacity:.45;cursor:default}
+.pp-btn.ghost{background:transparent;color:#fff;box-shadow:inset 0 0 0 1px rgba(255,255,255,.4)}
+.pp-note{font-size:12.5px;color:rgba(255,255,255,.72)}
+
+/* progress */
+.pp-prog{height:3px;background:rgba(255,255,255,.18);width:100%;order:9}
+.pp-prog i{display:block;height:100%;width:0;background:var(--pp-or);transition:width .25s}
+
+/* cover */
+.pp-cover{padding:64px clamp(16px,4vw,44px) 40px;max-width:1180px;margin:0 auto;
+  font-family:'Inter',system-ui,sans-serif}
+.pp-cover h2{font-family:'Archivo',system-ui,sans-serif;font-size:clamp(28px,4vw,44px);
+  letter-spacing:-.03em;margin:0 0 10px;color:var(--pp-ink)}
+.pp-cover p{color:#54595F;margin:0 0 26px;font-size:16px}
+.pp-toc{border-top:1px solid var(--pp-hair)}
+.pp-toc div{display:flex;gap:14px;align-items:baseline;padding:11px 2px;
+  border-bottom:1px solid var(--pp-hair);font-size:15px}
+.pp-toc b{font-variant-numeric:tabular-nums;color:var(--pp-or);min-width:34px;font-weight:700}
+.pp-toc span{flex:1;font-weight:600;color:var(--pp-ink)}
+.pp-toc em{font-style:normal;color:#8A9099;font-family:'IBM Plex Mono',monospace;font-size:12.5px}
+
+/* one captured page */
+.pp-doc{border-top:3px solid var(--pp-ink)}
+.pp-head{background:#F4F5F7;padding:26px clamp(16px,4vw,44px);
+  display:flex;align-items:baseline;gap:16px;flex-wrap:wrap;
+  font-family:'Inter',system-ui,sans-serif;border-bottom:1px solid var(--pp-hair)}
+.pp-head b{font-family:'Archivo',system-ui,sans-serif;font-size:23px;letter-spacing:-.02em;color:var(--pp-ink)}
+.pp-head u{text-decoration:none;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#8A9099}
+.pp-head i{font-style:normal;margin-left:auto;flex:none;font-size:12.5px;font-weight:700;
+  color:#fff;background:var(--pp-or);border-radius:99px;padding:4px 12px;font-variant-numeric:tabular-nums}
+.pp-fail{padding:26px clamp(16px,4vw,44px);color:#B3261E;font-size:14px}
+
+/* the captured page keeps the site stylesheet, so only kill sticky and reveal-on-scroll */
+.pp-doc .nav{position:static}
+.pp-doc [class*=reveal],.pp-doc [data-reveal]{opacity:1!important;transform:none!important}
+
+@media print{
+  @page{ size:A4; margin:12mm 10mm; }
+  html,body{background:#fff}
+  .pp-bar,.pp-prog,.pp-hide-print{display:none!important}
+  .pp-cover{padding:0 0 20px;break-after:page}
+  .pp-doc{break-before:page;border-top:0}
+  .pp-doc:first-of-type{break-before:auto}
+  .pp-head{background:#F4F5F7!important;break-after:avoid;break-inside:avoid;padding:14px 0}
+  section,.band,.newsbar,footer{break-inside:auto}
+  h1,h2,h3,h4,h5,h6{break-after:avoid}
+  table,figure,.brains,.vs,.t{break-inside:avoid}
+  a{text-decoration:none;color:inherit}
+  *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+}
+</style>
+</head>
+<body>
+
+<div class="pp-bar">
+  <h1>LiteCone, Enterprise print pack</h1>
+  <button class="pp-btn" id="ppRun">Build every page</button>
+  <button class="pp-btn ghost" id="ppPrint" disabled>Save as PDF</button>
+  <span class="pp-note" id="ppNote">19 pages in the menu. Build first, then save.</span>
+  <span class="sp"></span>
+  <a class="pp-btn ghost" href="index.html">Back to the site</a>
+  <div class="pp-prog"><i id="ppBar"></i></div>
+</div>
+
+<div class="pp-cover">
+  <h2>LiteCone, Enterprise</h2>
+  <p>Every page in the menu, stacked into one document with a divider before each. Build, then save as PDF from the print dialog.</p>
+  <div class="pp-toc" id="ppToc"></div>
+</div>
+
+<div id="ppOut"></div>
+
+<script>
+const PAGES = [
+{
+"href": "index.html",
+"label": "Home"
+},
+{
+"href": "coworkers.html",
+"label": "AI Co-workers"
+},
+{
+"href": "alex.html",
+"label": "ALEX"
+},
+{
+"href": "leo.html",
+"label": "LEO"
+},
+{
+"href": "eric.html",
+"label": "ERIC"
+},
+{
+"href": "rio.html",
+"label": "RIO"
+},
+{
+"href": "aura.html",
+"label": "AURA"
+},
+{
+"href": "aris.html",
+"label": "ARIS"
+},
+{
+"href": "marc.html",
+"label": "MARC"
+},
+{
+"href": "elsa.html",
+"label": "ELSA"
+},
+{
+"href": "iris.html",
+"label": "IRIS"
+},
+{
+"href": "insurance.html",
+"label": "Insurance"
+},
+{
+"href": "capital-markets.html",
+"label": "Capital markets and asset management"
+},
+{
+"href": "credit-unions.html",
+"label": "Credit unions"
+},
+{
+"href": "lending.html",
+"label": "Banking"
+},
+{
+"href": "co-decision.html",
+"label": "Co-Decision"
+},
+{
+"href": "platform.html",
+"label": "Know LiteCone"
+},
+{
+"href": "company.html",
+"label": "About"
+},
+{
+"href": "contact.html",
+"label": "Contact"
+}
+];
+const out  = document.getElementById('ppOut');
+const toc  = document.getElementById('ppToc');
+const bar  = document.getElementById('ppBar');
+const note = document.getElementById('ppNote');
+const run  = document.getElementById('ppRun');
+const prn  = document.getElementById('ppPrint');
+
+PAGES.forEach((p,i)=>{
+  const d=document.createElement('div');
+  d.innerHTML='<b>'+String(i+1).padStart(2,'0')+'</b><span>'+p.label+'</span><em>'+p.href+'</em>';
+  toc.appendChild(d);
+});
+
+const num    = i  => String(i+1).padStart(2,'0');
+const settle = ms => new Promise(r=>setTimeout(r,ms));
+
+// Waits only on images still pending, and never longer than the budget.
+// Resolves with how many were still outstanding when it gave up.
+function imagesReady(root, budget){
+  const pending=[...root.querySelectorAll('img')]
+    .filter(i=>!(i.complete && i.naturalWidth>0));
+  if(!pending.length) return Promise.resolve(0);
+  let left=pending.length;
+  const each=pending.map(img=>new Promise(r=>{
+    const done=()=>{
+      img.removeEventListener('load',done);
+      img.removeEventListener('error',done);
+      left--; r();
+    };
+    img.addEventListener('load',done);
+    img.addEventListener('error',done);
+  }));
+  return Promise.race([Promise.all(each), settle(budget)]).then(()=>left);
+}
+
+async function build(){
+  run.disabled=true; prn.disabled=true; out.innerHTML=''; bar.style.width='0';
+  try{
+    for(let i=0;i<PAGES.length;i++){
+      const p=PAGES[i];
+      note.textContent='Fetching '+p.href+' ('+(i+1)+' of '+PAGES.length+')';
+      const sec=document.createElement('section');
+      sec.className='pp-doc';
+      let inner='';
+      try{
+        const res=await fetch(p.href,{cache:'no-store'});
+        if(!res.ok) throw new Error(res.status+' '+res.statusText);
+        const doc=new DOMParser().parseFromString(await res.text(),'text/html');
+        doc.querySelectorAll('.pv, script, .pp-bar').forEach(n=>n.remove());
+        // this is the line that fixes the hang
+        doc.querySelectorAll('img[loading]').forEach(n=>n.removeAttribute('loading'));
+        const main=doc.querySelector('main')||doc.body;
+        const foot=doc.querySelector('footer');
+        inner=main.innerHTML+(main.contains(foot)?'':(foot?foot.outerHTML:''));
+      }catch(err){
+        inner='<div class="pp-fail">Could not load '+p.href+'. '+err.message+
+              '<br>If you opened this file straight off the disk, the browser blocks the fetch. '+
+              'Serve the folder over http, or upload it to Hostinger, and reload.</div>';
+      }
+      sec.innerHTML='<div class="pp-head"><b>'+p.label+'</b><u>'+p.href+
+                    '</u><i>'+num(i)+' / '+num(PAGES.length-1)+'</i></div>'+inner;
+      out.appendChild(sec);
+      bar.style.width=Math.round((i+1)/PAGES.length*100)+'%';
+    }
+
+    // pages with scripts stripped print as their frame, so say so on the page
+    out.querySelectorAll('#apps').forEach(el=>{
+      if(!el.children.length){
+        el.insertAdjacentHTML('afterend',
+          '<div class="pp-fail" style="color:#0A0A0A;background:#F4F5F7;border-radius:6px">'+
+          'The workflow calculator is interactive, so it prints as its frame. '+
+          'Open the page in the browser to run the numbers.</div>');
+      }
+    });
+
+    // everything is on screen now, so printing is allowed whatever the images do
+    prn.disabled=false;
+
+    note.textContent='Loading images';
+    try{ await Promise.race([document.fonts.ready, settle(3000)]); }catch(e){}
+    const missed=await imagesReady(out, 8000);
+    note.textContent = missed
+      ? PAGES.length+' pages ready. '+missed+' image'+(missed>1?'s':'')+
+        ' did not load. Everything else will print.'
+      : PAGES.length+' pages ready. Save as PDF, then choose Save as PDF as the destination.';
+  }catch(err){
+    note.textContent='Stopped: '+err.message+'. Whatever built is still printable.';
+  }finally{
+    run.disabled=false; prn.disabled=false;
+  }
+}
+
+run.addEventListener('click',build);
+prn.addEventListener('click',()=>window.print());
+</script>
+</body>
+</html>
