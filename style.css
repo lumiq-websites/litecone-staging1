@@ -1168,3 +1168,39 @@ textarea:focus-visible,[tabindex]:focus-visible{
 @media (max-width:560px){
   .bento{grid-template-columns:1fr!important}
   .bcell{min-height:0!important}}
+
+/* ══════════════════════════════════════════════════════════════════
+   Industries switcher — two-column rebuild.
+   Three side-by-side columns left nothing with a workable measure: the
+   panel heading was capped at 16ch and broke over four ragged lines, the
+   crew chips had ~150px for a role like "Commercial P and C", and the
+   stats sat at the bottom of a long thin column far from the copy they
+   belong to. The rail now holds its own narrow column and everything
+   else shares one wide one — the answer first, then who carries it.
+   ══════════════════════════════════════════════════════════════════ */
+.indus{
+  grid-template-columns:minmax(0,206px) minmax(0,1fr)!important;
+  grid-template-areas:"rail pane" "rail stage";
+  column-gap:clamp(28px,4vw,60px);row-gap:30px;align-items:start}
+.irail{grid-area:rail}
+.ipane{grid-area:pane}
+.istage{grid-area:stage}
+
+/* the heading finally gets a real measure */
+.ipane h3{max-width:24ch!important;margin-bottom:14px}
+.ipane p{max-width:68ch}
+
+/* stats read as a row under the copy they describe, not a distant tail */
+.ifacts{grid-template-columns:repeat(auto-fit,minmax(190px,1fr));max-width:760px;
+  margin-top:26px;padding-top:22px}
+
+/* with the full width available the chips stop wrapping their roles */
+.istage{padding:24px}
+.icrew{grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px}
+.icw em{white-space:normal}
+
+@media(max-width:1040px){
+  .indus{grid-template-columns:1fr!important;
+    grid-template-areas:"rail" "pane" "stage";row-gap:26px}
+  .ipane h3{max-width:26ch!important}
+}
