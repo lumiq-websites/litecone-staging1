@@ -1072,3 +1072,59 @@ textarea:focus-visible,[tabindex]:focus-visible{
 .form .done p{color:var(--soft);font-size:15px}
 .form .fine{margin-top:14px;font-size:12.5px;color:var(--soft)}
 .form .fnote{font-size:12.5px;color:var(--soft);margin:0 0 14px}
+
+/* ══════════════════════════════════════════════════════════════════
+   Industries switcher — layout pass.
+   Problems fixed: the crew cards were too narrow (roles wrapped to
+   three ragged lines), the stage card carried a fixed 330px height
+   that left a large empty well on the tracks with one Co-worker, and
+   the panel headings and stats used Inter while the rest of the site
+   had moved to the Gentium Plus display face.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* give the crew column the room the cards actually need */
+.indus{grid-template-columns:minmax(0,208px) minmax(0,1.38fr) minmax(0,1.06fr)}
+
+/* stack the four tracks in one grid cell so the card is always as tall
+   as its tallest state — switching tracks no longer resizes the box */
+.istage{display:grid;min-height:0;align-content:start}
+.ist{grid-area:1/1;min-width:0}
+.ist[hidden]{display:block;visibility:hidden;pointer-events:none}
+
+/* wider cards, so a role sits on one or two lines instead of three */
+.icrew{grid-template-columns:repeat(auto-fit,minmax(164px,1fr));gap:10px}
+.icw{align-items:center;min-height:66px;padding:10px 12px;
+  transition:border-color .18s var(--e),transform .18s var(--e),background-color .18s var(--e)}
+@media (hover:hover) and (pointer:fine){
+  .icw:hover{border-color:var(--or);transform:translateY(-1px)}}
+.icw .ia{width:40px;height:40px;min-width:40px}
+.icw b{font-size:14.5px;letter-spacing:-.01em}
+.icw em{font-size:11.5px;line-height:1.35;margin-top:3px;text-wrap:pretty}
+
+/* the selected track needs to read at a glance, not by weight alone */
+.irail button{position:relative}
+.irail button.on::before{content:"";position:absolute;left:-14px;top:50%;
+  transform:translateY(-50%);width:3px;height:22px;border-radius:2px;background:var(--or)}
+.irail button:hover{padding-left:2px}   /* the 6px nudge fought the rule above */
+
+/* panel type joins the rest of the site's display face */
+.ipane h3{font-family:'Gentium Plus',Georgia,serif;font-weight:400;letter-spacing:-.02em;
+  line-height:1.14;font-size:clamp(24px,2.7vw,32px)}
+.ifacts b{font-family:'Gentium Plus',Georgia,serif;font-weight:400;font-size:30px;
+  letter-spacing:-.02em;font-variant-numeric:tabular-nums}
+
+@media(max-width:1040px){
+  .indus{grid-template-columns:1fr}
+  .irail button.on::before{left:-8px}
+}
+
+/* ── themed wordmark ───────────────────────────────────────────────────
+   The pack shipped only the black wordmark, which disappeared against
+   the dark theme's ground. Swap the pair with the theme.              */
+.brand .lg-on-dark{display:block}
+.brand .lg-on-light{display:none}
+@media (prefers-color-scheme:light){
+  :root:not([data-theme="dark"]) .brand .lg-on-dark{display:none}
+  :root:not([data-theme="dark"]) .brand .lg-on-light{display:block}}
+:root[data-theme="light"] .brand .lg-on-dark{display:none}
+:root[data-theme="light"] .brand .lg-on-light{display:block}
