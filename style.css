@@ -1497,3 +1497,39 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 .agentrail{display:flex;flex-direction:column;flex:1}
 .arview{flex:1;height:auto;min-height:190px}
 @keyframes arail{from{transform:translateY(0)}to{transform:translateY(-33.3333%)}}
+
+/* ══════════════════════════════════════════════════════════════════
+   Hero rail, corrected.
+   · Height: .arview was flex:1 with the default min-height:auto, so its
+     floor was the full 27-row track — the rail defined the grid row and
+     ran far past the left column. min-height:0 lets it shrink to the
+     height the content column sets.
+   · Spacing: separation comes from row padding and a hairline, never
+     from gap. Every row must be exactly the same height or the -1/3
+     loop drifts out of register.
+   · Hover: the role and the "Meet …" CTA share one grid cell, so the
+     CTA crossfades in place instead of squeezing the truncated role.
+   ══════════════════════════════════════════════════════════════════ */
+.herostack,.agentrail{min-height:0}
+.arview{flex:1 1 0;min-height:0;height:auto}
+
+.artrack{gap:0}
+.arow{position:relative;padding:12px 8px 12px 4px;border-top:1px solid var(--hair2);
+  border-radius:0;transition:background-color .18s var(--e),padding-left .18s var(--e)}
+.arav{transition:border-color .18s var(--e),transform .18s var(--e)}
+
+.arsub{display:grid;min-width:0}
+.arsub > em,.arsub > .arcta{grid-area:1/1;min-width:0;
+  transition:opacity .18s var(--e),transform .18s var(--e)}
+.arcta{opacity:0;transform:translateY(2px);white-space:nowrap}
+.arn em{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+@media (hover:hover) and (pointer:fine){
+  .arow:hover{background:var(--panel);padding-left:8px}
+  .arow:hover .arav{border-color:var(--or);transform:scale(1.04)}
+  .arow:hover .arn b{color:var(--or-ink)}
+  .arow:hover .arsub > em{opacity:0;transform:translateY(-2px)}
+  .arow:hover .arcta{opacity:1;transform:none}}
+.arow:focus-visible .arsub > em{opacity:0}
+.arow:focus-visible .arcta{opacity:1;transform:none}
+.arn b{transition:color .18s var(--e)}
