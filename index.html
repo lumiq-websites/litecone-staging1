@@ -270,39 +270,42 @@
       <form data-form="briefing" method="post" action="#">
         <input type="text" class="hp" name="_hp" tabindex="-1" autocomplete="off" aria-hidden="true">
         <input type="hidden" name="_ts" value="">
-        <div class="field frow">
-          <div><label for="b-first">First name <span class="req" aria-hidden="true">*</span></label>
-            <input class="control" id="b-first" name="first_name" type="text" maxlength="60" autocomplete="given-name" required>
-            <span class="msg"></span></div>
-          <div><label for="b-last">Last name <span class="req" aria-hidden="true">*</span></label>
-            <input class="control" id="b-last" name="last_name" type="text" maxlength="60" autocomplete="family-name" required>
-            <span class="msg"></span></div>
+        <p class="send-err" role="alert">That did not send. Please try again, or write to team.marketing@lumiq.ai.</p>
+        <div class="frow">
+          <div class="field"><label for="b-name">Full name<span class="req" aria-hidden="true">*</span></label>
+            <input id="b-name" name="name" type="text" class="control" placeholder="Jane Okoro" maxlength="80" autocomplete="name" required>
+            <span class="msg">Tell us your name.</span></div>
+          <div class="field"><label for="b-email">Work email<span class="req" aria-hidden="true">*</span></label>
+            <input id="b-email" name="email" type="email" class="control" placeholder="jane@yourcompany.com" maxlength="120" autocomplete="email" required>
+            <span class="msg">Use your official work email.</span></div>
         </div>
-        <div class="field"><label for="b-email">Work email <span class="req" aria-hidden="true">*</span></label>
-          <input class="control" id="b-email" name="email" type="email" maxlength="120" autocomplete="email" placeholder="you@institution.com" required>
-          <span class="msg"></span></div>
-        <div class="field frow">
-          <div><label for="b-mobile">Mobile number <span class="req" aria-hidden="true">*</span></label>
-            <input class="control" id="b-mobile" name="mobile" type="tel" maxlength="24" autocomplete="tel" placeholder="+1 555 000 1234" required>
-            <span class="msg"></span></div>
-          <div><label for="b-company">Institution <span class="req" aria-hidden="true">*</span></label>
-            <input class="control" id="b-company" name="company" type="text" maxlength="90" autocomplete="organization" required>
-            <span class="msg"></span></div>
+        <div class="frow">
+          <div class="field"><label for="b-company">Company<span class="req" aria-hidden="true">*</span></label>
+            <input id="b-company" name="company" type="text" class="control" placeholder="Company name" maxlength="90" autocomplete="organization" required>
+            <span class="msg">Add your company.</span></div>
+          <div class="field"><label for="b-role">Role<span class="req" aria-hidden="true">*</span></label>
+            <input id="b-role" name="role" type="text" class="control" placeholder="e.g. Head of Underwriting" maxlength="80" autocomplete="organization-title" required>
+            <span class="msg">Add your role.</span></div>
         </div>
-        <div class="field frow">
-          <div><label for="b-track">Track</label>
-            <select class="control" id="b-track" name="track">
-              <option>Bank or credit union</option><option>Carrier or MGA</option>
-              <option>Asset manager</option><option>Other</option></select></div>
-          <div><label for="b-country">Country</label>
-            <select class="control" id="b-country" name="country">
-              <option>United States</option><option>Canada</option><option>United Kingdom</option>
-              <option>India</option><option>Singapore</option><option>Other</option></select></div>
+        <div class="field"><label for="b-mobile">Mobile<span class="req" aria-hidden="true">*</span></label>
+          <input id="b-mobile" name="mobile" type="tel" class="control" placeholder="+91 98765 43210" maxlength="24" autocomplete="tel" inputmode="tel" required>
+          <span class="msg">Add your mobile number.</span></div>
+        <div class="frow">
+          <div class="field"><label for="b-sector">Sector<span class="req" aria-hidden="true">*</span></label>
+            <select id="b-sector" name="sector" class="control" required>
+              <option value="" disabled selected>Choose your sector</option>
+              <option value="insurance">Insurance</option><option value="banking">Banking</option>
+              <option value="capital-markets">Capital Markets</option><option value="lending">Lending</option>
+              <option value="other">Other</option></select>
+            <span class="msg">Pick your sector.</span></div>
+          <div class="field"><label for="b-timeframe">Preferred timeframe<span class="req" aria-hidden="true">*</span></label>
+            <select id="b-timeframe" name="timeframe" class="control" required>
+              <option value="" disabled selected>When suits you?</option>
+              <option value="this-week">This week</option><option value="next-week">Next week</option>
+              <option value="this-month">This month</option><option value="exploring">Just exploring</option></select>
+            <span class="msg">Pick a timeframe.</span></div>
         </div>
-        <div class="field"><label for="b-msg">The workflow you would staff first</label>
-          <textarea class="control" id="b-msg" name="message" maxlength="1200" placeholder="For example: commercial credit files under two million, roughly 400 a month, two analysts."></textarea>
-          <span class="msg"></span></div>
-        <button class="btn" type="submit" style="width:100%;cursor:pointer">Book the briefing</button>
+        <button class="btn" type="submit" style="width:100%;cursor:pointer">Book briefing</button>
         <p class="fine">We use this to reply to you and nothing else. No newsletter unless you ask for one. See how we handle it in our <a href="https://litecone.ai/privacy.html">privacy notice</a>.</p>
       </form>
       <div class="done" role="status">
