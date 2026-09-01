@@ -19,7 +19,11 @@
   --hair:var(--lc-line-2); --hair2:var(--lc-line);
   --or:var(--lc-accent); --or-ink:var(--lc-accent-ink);
   --pr:#0A0A0A; --sp:#12A8A0; --deep:#0A0A0A;
-  --on-deep:#F5F5F2; --card-hi:#FFFFFF; --card-hi-ink:#0A0A0A;
+  --on-deep:#F5F5F2;
+  /* the raised card that sits on a dark band — dark in the dark theme,
+     white in the light one, with its own ink and rule tokens */
+  --card-hi:#171717; --card-hi-ink:#F5F5F2; --card-hi-ink-2:#B2B2AE;
+  --card-hi-line:rgba(245,245,242,.14);
   --ctl-line:var(--lc-ctl-line); --err:var(--lc-err);
   --e:cubic-bezier(.16,1,.3,1);
 
@@ -37,6 +41,8 @@
   --lc-accent-glow:rgba(228,90,11,.22);
   --lc-header-bg:rgba(250,250,247,.75);
   --lc-err:#C4322B;
+  --card-hi:#FFFFFF; --card-hi-ink:#0A0A0A; --card-hi-ink-2:rgba(10,10,10,.62);
+  --card-hi-line:rgba(10,10,10,.12);
 }}
 /* light theme — explicit toggle */
 :root[data-theme="light"]{
@@ -49,6 +55,8 @@
   --lc-accent-glow:rgba(228,90,11,.22);
   --lc-header-bg:rgba(250,250,247,.75);
   --lc-err:#C4322B;
+  --card-hi:#FFFFFF; --card-hi-ink:#0A0A0A; --card-hi-ink-2:rgba(10,10,10,.62);
+  --card-hi-line:rgba(10,10,10,.12);
 }
 *{box-sizing:border-box}
 html{scroll-behavior:smooth}
@@ -1224,16 +1232,45 @@ textarea:focus-visible,[tabindex]:focus-visible{
 .mqattrs{background:var(--deep)}
 .band .bg{background:var(--deep)!important}
 
-/* content on the permanently white card */
-.band table.t th{color:rgba(10,10,10,.55)}
-.band table.t th.hi{color:#BC4708}
-.band table.t td{color:#0A0A0A}
-.band table.t td.k{color:rgba(10,10,10,.60)}
-.band table.t th,.band table.t td{border-bottom-color:rgba(10,10,10,.12)}
-.band table.t tr:hover td{background:rgba(10,10,10,.04)}
-.band .three em{color:rgba(10,10,10,.60)}
-.svc .grid9 a{color:#0A0A0A}
-.svc .grid9 a span{color:rgba(10,10,10,.62)}
+/* content on the raised card, following the card's own ink tokens so it
+   reads in both themes */
+.band table.t th{color:var(--card-hi-ink-2)}
+.band table.t th.hi{color:var(--or)}
+.band table.t td{color:var(--card-hi-ink)}
+.band table.t td.k{color:var(--card-hi-ink-2)}
+.band table.t th,.band table.t td{border-bottom-color:var(--card-hi-line)}
+.band table.t tr:hover td{background:color-mix(in srgb,var(--card-hi-ink) 7%,transparent)}
+.band .three em{color:var(--card-hi-ink-2)}
+.band .three div,.band .t,.band table{border:1px solid var(--card-hi-line)}
+.svc .grid9 a{color:var(--card-hi-ink);border:1px solid var(--card-hi-line)}
+.svc .grid9 a span{color:var(--card-hi-ink-2)}
+.floatcard{color:var(--card-hi-ink)}
+
+/* the marquee's edge fades matched --ink, which is near-white in the dark
+   theme — that was the pale wash at both ends of the band */
+.mqattrs::before{background:linear-gradient(90deg,var(--deep),transparent)}
+.mqattrs::after{background:linear-gradient(270deg,var(--deep),transparent)}
 /* avatar well sits behind the headshot; keep it dark in both themes so a
    failed image never leaves a near-white disc under white fallback text */
 .icw .ia{background:var(--deep);color:var(--on-deep)}
+
+/* ══════════════════════════════════════════════════════════════════
+   Co-worker bento — shades of black, orange on hover, CTA in place of
+   the agent-count pill. The tiles carry their own dark shade inline, so
+   the hover colour needs !important to win against it.
+   ══════════════════════════════════════════════════════════════════ */
+.bcell{transition:background-color .22s var(--e)}
+@media (hover:hover) and (pointer:fine){
+  .bcell:hover{background:var(--or)!important}}
+.bcell:focus-visible{background:var(--or)!important}
+
+/* the pill becomes a call to action into the Co-worker's page */
+.bcell u{background:none;border:0;padding:0;border-radius:0;
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;font-weight:600;
+  letter-spacing:.13em;text-transform:uppercase;color:var(--lc-accent-hi);
+  transition:color .2s var(--e)}
+.bcell u::after{content:"\2192";font-size:12px;line-height:1;
+  transition:transform .2s var(--e)}
+.bcell:hover u,.bcell:focus-visible u{color:#fff}
+.bcell:hover u::after{transform:translateX(3px)}
