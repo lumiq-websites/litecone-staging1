@@ -1204,3 +1204,36 @@ textarea:focus-visible,[tabindex]:focus-visible{
     grid-template-areas:"rail" "pane" "stage";row-gap:26px}
   .ipane h3{max-width:26ch!important}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Dark-theme contrast fixes.
+   Three surfaces were painted with tokens that flip with the theme,
+   when what they needed was a fixed one:
+
+   · .band .bg and .mqattrs used var(--ink) as a BACKGROUND. --ink is
+     near-white in the dark theme, so both bands turned pale while their
+     text stayed white — the marquee and the Co-Decision band vanished.
+   · The comparison table and the why-now cards sit on --card-hi, which
+     is white in BOTH themes, but coloured their text with --soft,
+     --white and --ink, which do flip. In the dark theme that put light
+     grey text on a white card, and turned the table's hover row black.
+
+   Bands that are always dark now take --deep; content on the always
+   white card takes fixed inks.
+   ══════════════════════════════════════════════════════════════════ */
+.mqattrs{background:var(--deep)}
+.band .bg{background:var(--deep)!important}
+
+/* content on the permanently white card */
+.band table.t th{color:rgba(10,10,10,.55)}
+.band table.t th.hi{color:#BC4708}
+.band table.t td{color:#0A0A0A}
+.band table.t td.k{color:rgba(10,10,10,.60)}
+.band table.t th,.band table.t td{border-bottom-color:rgba(10,10,10,.12)}
+.band table.t tr:hover td{background:rgba(10,10,10,.04)}
+.band .three em{color:rgba(10,10,10,.60)}
+.svc .grid9 a{color:#0A0A0A}
+.svc .grid9 a span{color:rgba(10,10,10,.62)}
+/* avatar well sits behind the headshot; keep it dark in both themes so a
+   failed image never leaves a near-white disc under white fallback text */
+.icw .ia{background:var(--deep);color:var(--on-deep)}
