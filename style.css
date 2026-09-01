@@ -1404,3 +1404,7 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
   .arview{overflow-y:auto}}
 
 @media(max-width:960px){.agentrail{display:none}}
+/* the rail sits at the top of the hero's right column, beside the headline,
+   with the Five brains card stacked beneath it */
+.herostack{display:flex;flex-direction:column;gap:14px;align-self:start;min-width:0}
+.agentrail{margin-top:0}
