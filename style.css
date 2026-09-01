@@ -1342,4 +1342,4 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 /* agent hero: drop the button row 20px below the name block. Scoped to
    .cwhero + .ctas so only the nine Co-worker pages are affected — the
    homepage hero keeps its own spacing. */
-.hero .cwhero + .ctas{margin-top:20px}
+.hero .cwhero + .ctas{margin-top:40px}
