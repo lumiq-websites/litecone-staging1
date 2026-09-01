@@ -1408,3 +1408,27 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
    with the Five brains card stacked beneath it */
 .herostack{display:flex;flex-direction:column;gap:14px;align-self:start;min-width:0}
 .agentrail{margin-top:0}
+
+/* ══════════════════════════════════════════════════════════════════
+   Briefing modal — tighten the vertical rhythm so the seven fields fit
+   without the panel scrolling. Roughly 120px comes out: 4px per field
+   gap, 2px per label, 4px per control, and less air around the heading
+   and the fine print. Nothing shrinks below a comfortable tap target —
+   the controls stay 44px tall.
+   ══════════════════════════════════════════════════════════════════ */
+.modal-head{margin-bottom:12px}
+.modal h3{font-size:clamp(24px,3vw,30px);line-height:1.06}
+.modal .mdek{margin-top:9px;margin-bottom:14px;font-size:14.5px;line-height:1.45}
+.modal .field{margin-bottom:13px}
+.modal label{margin-bottom:5px;font-size:12px}
+.modal .control{padding:11px 14px;font-size:14.5px;border-radius:8px}
+.modal textarea.control{min-height:64px}
+.modal .fine{margin-top:11px;font-size:12px;line-height:1.45}
+.modal .msg{margin-top:5px}
+/* the contact page form is the same form — keep its rhythm identical */
+.form .field{margin-bottom:13px}
+.form label{margin-bottom:5px;font-size:12px}
+.form .control{padding:11px 14px;font-size:14.5px;border-radius:8px}
+.form textarea.control{min-height:64px}
+.form .fine{margin-top:11px;font-size:12px;line-height:1.45}
+.form .msg{margin-top:5px}
