@@ -26,7 +26,7 @@ default, light via `prefers-color-scheme` **and** a `data-theme` toggle that
 persists in `localStorage` under `lc-theme` — the same key the live site uses.
 The variant's original variable names (`--paper`, `--soft`, `--or` …) are
 aliased onto the LiteCone tokens, so every rule in the file rethemes at once.
-Fonts are Gentium Plus (display), Inter (body/UI) and IBM Plex Mono (labels).
+Fonts are Turret Road (display), Inter (body/UI) and IBM Plex Mono (labels).
 
 Small orange text uses `--or-ink` (the contrast-tuned value), never `--or`,
 so it clears WCAG AA in the light theme.
