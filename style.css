@@ -1459,3 +1459,41 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 @media(max-width:1040px){.brains-band{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:720px){.brains-band{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:480px){.brains-band{grid-template-columns:1fr}}
+
+/* ══════════════════════════════════════════════════════════════════
+   Hero, second pass — reference: litecone.ai.
+   The live hero highlights exactly two things: the headline and a bright
+   serif subhead. Everything else — the eyebrow, the meta line, the rail
+   — is small muted mono. Ours was competing with itself: an orange
+   eyebrow tag, 34px bold metrics and a 20px bold industries line all
+   shouting alongside the headline.
+   ══════════════════════════════════════════════════════════════════ */
+
+/* eyebrow: one small accent tag on the left, muted label on the right */
+.hero .eyebrow span{font-size:11px;letter-spacing:.22em;color:var(--lc-ink-3)}
+.hero .eyebrow span:first-child{color:var(--or-ink);letter-spacing:.28em}
+.hero .eyebrow b{color:var(--lc-ink-3);font-weight:600}
+
+/* subhead becomes the second highlight: display face, full ink */
+.hero .hsub{font-family:'Bree Serif',Georgia,serif;font-weight:400;
+  font-size:clamp(19px,2vw,27px);line-height:1.3;color:var(--ink);
+  max-width:34ch;margin:22px 0 30px}
+
+/* metrics step back — they were 34px/800, louder than the subhead */
+.hero .metrics{margin-top:40px;padding-top:22px;gap:38px}
+.hero .metrics b{font-family:'Inter',system-ui,sans-serif;font-size:21px;
+  font-weight:700;letter-spacing:-.01em}
+.hero .metrics span{font-size:10px;color:var(--lc-ink-3)}
+
+/* the industries line becomes a quiet meta row, not a second headline */
+.hero .metrics .wide{flex-basis:100%;margin-top:4px}
+.hero .metrics .wide b{font-family:'IBM Plex Mono',ui-monospace,monospace;
+  font-size:11.5px;font-weight:500;letter-spacing:.13em;text-transform:uppercase;
+  color:var(--soft);line-height:1.7}
+.hero .metrics .wide b i{color:var(--lc-ink-4);margin:0 7px}
+
+/* rail: fill the column so it aligns with the content height */
+.herostack{align-self:stretch}
+.agentrail{display:flex;flex-direction:column;flex:1}
+.arview{flex:1;height:auto;min-height:190px}
+@keyframes arail{from{transform:translateY(0)}to{transform:translateY(-33.3333%)}}
