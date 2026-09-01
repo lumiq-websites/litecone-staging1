@@ -80,6 +80,10 @@
       openOv = ov;
       var stamp = ov.querySelector('input[name="_ts"]');
       if (stamp) stamp.value = String(Date.now());
+      /* one form serves every CTA, so record which button opened it —
+         the lead row still shows 'Request a demo' vs 'Book a briefing' */
+      var cta = ov.querySelector('input[name="cta"]');
+      if (cta) cta.value = (trigger && trigger.textContent || '').trim().slice(0, 60);
       var f = ov.querySelector('.control');
       if (f) setTimeout(function () {
         try { f.focus({ preventScroll: true }); } catch (_) { f.focus(); }
