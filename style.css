@@ -1279,3 +1279,15 @@ textarea:focus-visible,[tabindex]:focus-visible{
    thick white frame around the table once the table itself went dark. */
 .band .tablecard{background:var(--card-hi);color:var(--card-hi-ink);
   border:1px solid var(--card-hi-line);border-radius:12px;padding:6px 18px}
+
+/* ── nav: centre the menu between the wordmark and the CTA ─────────────
+   It was a flex row with the links hard against the logo (margin-left:10px)
+   and the CTA pushed right by margin-left:auto. A three-column grid gives
+   the links the whole middle track to centre in.                        */
+.nav .in{display:grid;grid-template-columns:auto 1fr auto;align-items:center}
+.links{justify-content:center;margin-left:0!important;margin-right:0!important}
+.navcta{margin-left:0;justify-self:end}
+
+/* below 960px the links are hidden, so the CTA takes the second track */
+@media(max-width:960px){
+  .nav .in{grid-template-columns:auto 1fr}}
