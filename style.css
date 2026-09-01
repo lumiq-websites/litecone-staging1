@@ -1291,3 +1291,50 @@ textarea:focus-visible,[tabindex]:focus-visible{
 /* below 960px the links are hidden, so the CTA takes the second track */
 @media(max-width:960px){
   .nav .in{grid-template-columns:auto 1fr}}
+
+/* ══════════════════════════════════════════════════════════════════
+   Mobile menu — ported from litecone.ai.
+   The preview pack simply hid the nav links below 960px, leaving no way
+   to reach any section on a phone. This is the live site's burger and
+   full-screen panel, adapted to this build's .links/.dd markup.
+   ══════════════════════════════════════════════════════════════════ */
+.nav-burger{display:none;width:42px;height:42px;flex:none;flex-direction:column;
+  align-items:center;justify-content:center;gap:5px;border:1px solid var(--ctl-line);
+  border-radius:8px;background:none;cursor:pointer;padding:0;
+  transition:border-color .2s var(--e)}
+.nav-burger span{display:block;width:18px;height:2px;background:var(--ink);border-radius:2px;
+  transition:transform .25s var(--e),opacity .18s var(--e)}
+@media (hover:hover) and (pointer:fine){.nav-burger:hover{border-color:var(--or)}}
+body.menu-open .nav-burger span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+body.menu-open .nav-burger span:nth-child(2){opacity:0}
+body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+
+@media(max-width:960px){
+  .nav-burger{display:inline-flex}
+  body.menu-open{overflow:hidden}
+
+  /* the link row becomes a full-screen panel under the header */
+  .links{display:flex!important;position:fixed;top:0;left:0;right:0;bottom:0;
+    flex-direction:column;align-items:stretch;gap:0;
+    padding:calc(var(--hdr-h,64px) + 10px) var(--gut) 40px;
+    background:var(--paper);overflow-y:auto;overscroll-behavior:contain;z-index:70;
+    opacity:0;visibility:hidden;pointer-events:none;transform:translateY(-6px);
+    transition:opacity .24s var(--e),transform .24s var(--e),visibility 0s linear .24s}
+  body.menu-open .links{opacity:1;visibility:visible;pointer-events:auto;transform:none;
+    transition:opacity .24s var(--e),transform .24s var(--e)}
+
+  .links>a,.links .dd{width:100%;border-bottom:1px solid var(--hair)}
+  .links>a,.dd>a{display:flex;align-items:center;justify-content:space-between;
+    font-size:17px;padding:15px 2px;color:var(--ink)}
+  .dd{display:block;position:static}
+
+  /* dropdown panels sit inline and expand on tap instead of hovering */
+  .ddm{position:static;transform:none!important;display:none;opacity:1;visibility:visible;
+    pointer-events:auto;background:transparent;border:0;box-shadow:none;
+    min-width:0;width:auto;padding:0 0 10px 4px}
+  .dd.open .ddm{display:block}
+  .dd:hover .ddm,.dd:focus-within .ddm{opacity:1;visibility:visible;transform:none}
+  .dnotch{display:none}
+  .ddm .dr,.ddm .dr.plain{padding:11px 4px}
+  .dfoot{padding:11px 4px}
+}

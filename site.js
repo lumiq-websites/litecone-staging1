@@ -284,6 +284,52 @@
     });
   })();
 
+  /* ── mobile menu ───────────────────────────────────────────────────
+     Below 960px the link row becomes a full-screen panel. Ported from
+     litecone.ai and adapted to this build's .dd dropdowns.            */
+  (function () {
+    var b = document.getElementById('navBurger');
+    var nav = document.getElementById('primaryNav');
+    if (!b || !nav) return;
+    var hdr = document.querySelector('.nav');
+
+    function set(open) {
+      document.body.classList.toggle('menu-open', open);
+      b.setAttribute('aria-expanded', open ? 'true' : 'false');
+      b.setAttribute('aria-label', open ? 'Close menu' : 'Menu');
+      if (open && hdr) {
+        document.documentElement.style.setProperty('--hdr-h', hdr.offsetHeight + 'px');
+      }
+      if (!open) {
+        nav.querySelectorAll('.dd.open').forEach(function (d) {
+          d.classList.remove('open');
+          var t = d.querySelector('a');
+          if (t) t.setAttribute('aria-expanded', 'false');
+        });
+      }
+    }
+
+    b.addEventListener('click', function (e) {
+      e.stopPropagation();
+      set(!document.body.classList.contains('menu-open'));
+    });
+
+    nav.querySelectorAll('a').forEach(function (a) {
+      a.addEventListener('click', function () {
+        /* a dropdown trigger expands in place — only real links close the menu */
+        if (a.parentElement && a.parentElement.classList.contains('dd')) return;
+        set(false);
+      });
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && document.body.classList.contains('menu-open')) set(false);
+    });
+    window.addEventListener('resize', function () {
+      if (window.innerWidth > 960 && document.body.classList.contains('menu-open')) set(false);
+    });
+  })();
+
   /* ── harden every off-site link against reverse tabnabbing ─────────── */
   document.querySelectorAll('a[target="_blank"], a[href^="http"]').forEach(function (a) {
     if (a.host && a.host !== location.host) a.setAttribute('rel', 'noopener noreferrer');
