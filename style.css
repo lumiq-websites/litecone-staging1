@@ -1353,3 +1353,54 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
   .links{align-items:center}
   .dd{display:flex;align-items:center}
 }
+
+/* ══════════════════════════════════════════════════════════════════
+   Hero agent rail — the Co-workers, scrolling, under the Five brains
+   card. The real nine carry links and stay focusable; the duplicate
+   nine exist only to close the loop and are hidden from assistive tech
+   and the tab order. Pauses on hover, on focus, on the button, and
+   under prefers-reduced-motion.
+   ══════════════════════════════════════════════════════════════════ */
+.agentrail{margin-top:14px;border:1px solid var(--hair);background:var(--white);
+  border-radius:var(--rad);padding:14px 6px 8px 14px}
+.arhead{display:flex;align-items:center;justify-content:space-between;
+  gap:10px;padding-right:8px;margin-bottom:6px}
+.arhead h6{font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10.5px;
+  font-weight:600;letter-spacing:.13em;text-transform:uppercase;color:var(--soft);margin:0}
+.mq-pause{width:24px;height:24px;flex:none;display:grid;place-items:center;
+  border:1px solid var(--ctl-line);border-radius:6px;background:none;color:var(--soft);
+  cursor:pointer;padding:0;transition:color .2s var(--e),border-color .2s var(--e)}
+@media (hover:hover) and (pointer:fine){.mq-pause:hover{color:var(--ink);border-color:var(--ink)}}
+
+.arview{position:relative;height:268px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent);
+  mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent)}
+.artrack{display:flex;flex-direction:column;animation:arail 34s linear infinite}
+@keyframes arail{from{transform:translateY(0)}to{transform:translateY(-50%)}}
+.agentrail:hover .artrack,
+.agentrail:focus-within .artrack,
+.agentrail.paused .artrack{animation-play-state:paused}
+
+.arow{display:flex;align-items:center;gap:11px;padding:9px 8px 9px 0;
+  text-decoration:none;border-radius:8px}
+.arav{width:34px;height:34px;min-width:34px;border-radius:50%;overflow:hidden;flex:none;
+  border:1px solid var(--hair)}
+.arav img{width:100%;height:100%;object-fit:cover;display:block}
+.arn{min-width:0;flex:1}
+.arn b{display:block;font-size:13.5px;font-weight:700;color:var(--ink);line-height:1.2}
+.arn em{display:block;font-style:normal;font-size:11px;color:var(--soft);line-height:1.3;
+  margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.arcta{flex:none;font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:9.5px;
+  font-weight:600;letter-spacing:.11em;text-transform:uppercase;color:var(--or-ink);
+  opacity:0;transform:translateX(-4px);transition:opacity .2s var(--e),transform .2s var(--e)}
+@media (hover:hover) and (pointer:fine){
+  .arow:hover{background:var(--panel)}
+  .arow:hover .arcta{opacity:1;transform:none}}
+.arow:focus-visible .arcta{opacity:1;transform:none}
+
+/* no motion: the rail becomes a plain scrollable list */
+@media (prefers-reduced-motion:reduce){
+  .artrack{animation:none!important;transform:none!important}
+  .arview{overflow-y:auto}}
+
+@media(max-width:960px){.agentrail{display:none}}

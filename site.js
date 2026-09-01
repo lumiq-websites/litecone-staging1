@@ -334,6 +334,25 @@
     });
   })();
 
+  /* ── hero agent rail: pause control ────────────────────────────────
+     Hover and focus pause it in CSS; this is the explicit control the
+     house accessibility rules require for anything auto-moving.      */
+  (function () {
+    var rail = document.getElementById('agentRail');
+    var btn = document.getElementById('railPause');
+    if (!rail || !btn) return;
+    var PAUSE_ICO = '<svg viewBox="0 0 10 12" aria-hidden="true" width="9" height="11">'
+      + '<path d="M1 1h2.6v10H1zM6.4 1H9v10H6.4z" fill="currentColor"/></svg>';
+    var PLAY_ICO = '<svg viewBox="0 0 12 12" aria-hidden="true" width="9" height="11">'
+      + '<path d="M2 1l8 5-8 5z" fill="currentColor"/></svg>';
+    btn.addEventListener('click', function () {
+      var paused = rail.classList.toggle('paused');
+      btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+      btn.setAttribute('aria-label', paused ? 'Play the Co-worker list' : 'Pause the Co-worker list');
+      btn.innerHTML = paused ? PLAY_ICO : PAUSE_ICO;
+    });
+  })();
+
   /* ── harden every off-site link against reverse tabnabbing ─────────── */
   document.querySelectorAll('a[target="_blank"], a[href^="http"]').forEach(function (a) {
     if (a.host && a.host !== location.host) a.setAttribute('rel', 'noopener noreferrer');
