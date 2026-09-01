@@ -1372,9 +1372,9 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
   cursor:pointer;padding:0;transition:color .2s var(--e),border-color .2s var(--e)}
 @media (hover:hover) and (pointer:fine){.mq-pause:hover{color:var(--ink);border-color:var(--ink)}}
 
-.arview{position:relative;height:268px;overflow:hidden;
-  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent);
-  mask-image:linear-gradient(to bottom,transparent,#000 11%,#000 89%,transparent)}
+.arview{position:relative;height:156px;overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent);
+  mask-image:linear-gradient(to bottom,transparent,#000 8%,#000 92%,transparent)}
 .artrack{display:flex;flex-direction:column;animation:arail 34s linear infinite}
 @keyframes arail{from{transform:translateY(0)}to{transform:translateY(-50%)}}
 .agentrail:hover .artrack,
