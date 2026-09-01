@@ -1432,3 +1432,20 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 .form textarea.control{min-height:64px}
 .form .fine{margin-top:11px;font-size:12px;line-height:1.45}
 .form .msg{margin-top:5px}
+
+/* ══════════════════════════════════════════════════════════════════
+   Five brains, as a section below Co-Decision.
+   In the hero it was a narrow sidebar card — a vertical list with rules
+   between the rows. Full width, that same list would stretch each row
+   across the whole page, so the five become a card grid instead. The
+   eyebrow now carries the label the card's own h6 used to.
+   ══════════════════════════════════════════════════════════════════ */
+.brains-band{background:transparent;border:0;padding:0;display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(208px,1fr));gap:14px}
+.brains-band .r{flex-direction:column;align-items:flex-start;gap:10px;
+  padding:20px;border:1px solid var(--hair);border-radius:var(--rad);
+  background:var(--white)}
+.brains-band .r:first-of-type{border-top:1px solid var(--hair)}
+.brains-band u{margin-top:0}
+.brains-band b{font-size:15px}
+.brains-band p{font-size:13.5px}
