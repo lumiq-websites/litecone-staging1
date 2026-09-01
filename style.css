@@ -305,7 +305,7 @@ footer .legal{border-top:1px solid rgba(255,255,255,.15);margin-top:36px;padding
 .gradhero .lab{color:rgba(255,255,255,.75);display:block;margin-bottom:18px}
 .floatcards{display:grid;grid-template-columns:1fr 1fr;gap:16px;max-width:660px;margin:44px auto 0;text-align:left}
 @media(max-width:700px){.floatcards{grid-template-columns:1fr}}
-.floatcard{background:#fff;border-radius:16px;padding:18px;color:var(--ink)}
+.floatcard{background:var(--card-hi);border-radius:16px;padding:18px;color:var(--card-hi-ink)}
 .floatcard u{width:30px;height:30px;border-radius:9px;display:block;margin-bottom:12px}
 .floatcard b{display:block;font-size:15px;margin-bottom:5px}
 .floatcard p{margin:0;font-size:13px;color:var(--soft)}
@@ -1241,7 +1241,7 @@ textarea:focus-visible,[tabindex]:focus-visible{
 .band table.t th,.band table.t td{border-bottom-color:var(--card-hi-line)}
 .band table.t tr:hover td{background:color-mix(in srgb,var(--card-hi-ink) 7%,transparent)}
 .band .three em{color:var(--card-hi-ink-2)}
-.band .three div,.band .t,.band table{border:1px solid var(--card-hi-line)}
+.band .three div{border:1px solid var(--card-hi-line)}
 .svc .grid9 a{color:var(--card-hi-ink);border:1px solid var(--card-hi-line)}
 .svc .grid9 a span{color:var(--card-hi-ink-2)}
 .floatcard{color:var(--card-hi-ink)}
@@ -1274,3 +1274,8 @@ textarea:focus-visible,[tabindex]:focus-visible{
   transition:transform .2s var(--e)}
 .bcell:hover u,.bcell:focus-visible u{color:#fff}
 .bcell:hover u::after{transform:translateX(3px)}
+
+/* the comparison table's card. Was an inline background:#fff, which left a
+   thick white frame around the table once the table itself went dark. */
+.band .tablecard{background:var(--card-hi);color:var(--card-hi-ink);
+  border:1px solid var(--card-hi-line);border-radius:12px;padding:6px 18px}
