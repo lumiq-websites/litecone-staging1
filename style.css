@@ -1343,3 +1343,13 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
    .cwhero + .ctas so only the nine Co-worker pages are affected — the
    homepage hero keeps its own spacing. */
 .hero .cwhero + .ctas{margin-top:40px}
+
+/* nav items sat on different baselines: .links had no align-items, so the
+   flex items stretched, and the .dd wrappers (which carry the chevron)
+   resolved their text at a different height than the plain links.
+   Scoped above the mobile breakpoint so the full-screen panel, which
+   deliberately stacks and stretches, is not affected. */
+@media(min-width:961px){
+  .links{align-items:center}
+  .dd{display:flex;align-items:center}
+}
