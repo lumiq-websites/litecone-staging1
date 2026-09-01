@@ -1449,3 +1449,13 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 .brains-band u{margin-top:0}
 .brains-band b{font-size:15px}
 .brains-band p{font-size:13.5px}
+/* five across on one line: auto-fit could not place them, because five
+   208px minimums plus gaps (1096px) exceed the 1076px of content width
+   inside .wrap. Pinning the count fits them at ~204px each. */
+.brains-band{grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
+.brains-band .r{padding:16px 15px;gap:9px}
+.brains-band b{font-size:14.5px;line-height:1.25}
+.brains-band p{font-size:13px;line-height:1.45}
+@media(max-width:1040px){.brains-band{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media(max-width:720px){.brains-band{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:480px){.brains-band{grid-template-columns:1fr}}
