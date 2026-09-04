@@ -14,7 +14,7 @@ The source of truth is the `Staging1` branch of the private
 
 ## What's here
 
-23 pages plus a 404 — homepage, the nine AI Co-worker pages (LEO, ERIC, AURA,
+23 pages plus a 404 — homepage, the nine AI Worker pages (LEO, ERIC, AURA,
 ARIS, ALEX, RIO, ELSA, IRIS, MARC), four industry pages, Co-Decision, Know
 LiteCone, Platform, Pricing, the workflow calculator, Company and Contact.
 

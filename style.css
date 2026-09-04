@@ -1085,7 +1085,7 @@ textarea:focus-visible,[tabindex]:focus-visible{
    Industries switcher — layout pass.
    Problems fixed: the crew cards were too narrow (roles wrapped to
    three ragged lines), the stage card carried a fixed 330px height
-   that left a large empty well on the tracks with one Co-worker, and
+   that left a large empty well on the tracks with one Worker, and
    the panel headings and stats used Inter while the rest of the site
    had moved to the display face.
    ══════════════════════════════════════════════════════════════════ */
@@ -1142,7 +1142,7 @@ textarea:focus-visible,[tabindex]:focus-visible{
 .bcell .ph{width:34%!important;right:16px!important;bottom:16px!important}
 
 /* ══════════════════════════════════════════════════════════════════
-   Co-worker bento — layout rebuild.
+   Worker bento — layout rebuild.
    The portrait was absolutely positioned and oversized, so every text
    rule had been capped to 50% width to dodge it. That caused the wrapped
    roles, the collision on the longer titles, and a ragged baseline
@@ -1255,7 +1255,7 @@ textarea:focus-visible,[tabindex]:focus-visible{
 .icw .ia{background:var(--deep);color:var(--on-deep)}
 
 /* ══════════════════════════════════════════════════════════════════
-   Co-worker bento — shades of black, orange on hover, CTA in place of
+   Worker bento — shades of black, orange on hover, CTA in place of
    the agent-count pill. The tiles carry their own dark shade inline, so
    the hover colour needs !important to win against it.
    ══════════════════════════════════════════════════════════════════ */
@@ -1264,7 +1264,7 @@ textarea:focus-visible,[tabindex]:focus-visible{
   .bcell:hover{background:var(--or)!important}}
 .bcell:focus-visible{background:var(--or)!important}
 
-/* the pill becomes a call to action into the Co-worker's page */
+/* the pill becomes a call to action into the Worker's page */
 .bcell u{background:none;border:0;padding:0;border-radius:0;
   display:inline-flex;align-items:center;gap:7px;
   font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10px;font-weight:600;
@@ -1340,7 +1340,7 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 }
 
 /* agent hero: drop the button row 20px below the name block. Scoped to
-   .cwhero + .ctas so only the nine Co-worker pages are affected — the
+   .cwhero + .ctas so only the nine Worker pages are affected — the
    homepage hero keeps its own spacing. */
 .hero .cwhero + .ctas{margin-top:40px}
 
@@ -1355,7 +1355,7 @@ body.menu-open .nav-burger span:nth-child(3){transform:translateY(-7px) rotate(-
 }
 
 /* ══════════════════════════════════════════════════════════════════
-   Hero agent rail — the Co-workers, scrolling, under the Five brains
+   Hero agent rail — the Workers, scrolling, under the Five brains
    card. The real nine carry links and stay focusable; the duplicate
    nine exist only to close the loop and are hidden from assistive tech
    and the tab order. Pauses on hover, on focus, on the button, and

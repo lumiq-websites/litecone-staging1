@@ -348,7 +348,7 @@
     btn.addEventListener('click', function () {
       var paused = rail.classList.toggle('paused');
       btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
-      btn.setAttribute('aria-label', paused ? 'Play the Co-worker list' : 'Pause the Co-worker list');
+      btn.setAttribute('aria-label', paused ? 'Play the Worker list' : 'Pause the Worker list');
       btn.innerHTML = paused ? PLAY_ICO : PAUSE_ICO;
     });
   })();

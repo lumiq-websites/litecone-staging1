@@ -14,7 +14,7 @@ branch.
 
 - `index.html`, `coworkers.html`, `co-decision.html`, `how-it-works.html`,
   `platform.html`, `pricing.html`, `calculator.html`, `company.html`, `contact.html`
-- AI Co-workers: `leo` `eric` `aura` `aris` `alex` `rio` `elsa` `iris` `marc`
+- AI Workers: `leo` `eric` `aura` `aris` `alex` `rio` `elsa` `iris` `marc`
 - Industries: `insurance` `capital-markets` `credit-unions` `lending`
 - `print-all.html` — the print pack, deliberately `noindex`
 
