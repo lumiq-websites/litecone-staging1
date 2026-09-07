@@ -84,6 +84,11 @@
          the lead row still shows 'Request a demo' vs 'Book a briefing' */
       var cta = ov.querySelector('input[name="cta"]');
       if (cta) cta.value = (trigger && trigger.textContent || '').trim().slice(0, 60);
+      /* a CTA on a Worker page names its Worker, so tick that box for them */
+      var pre = trigger && trigger.getAttribute && trigger.getAttribute('data-coworker');
+      if (pre) ov.querySelectorAll('input[name="coworkers"]').forEach(function (c) {
+        c.checked = (c.value === pre);
+      });
       var f = ov.querySelector('.control');
       if (f) setTimeout(function () {
         try { f.focus({ preventScroll: true }); } catch (_) { f.focus(); }
@@ -197,7 +202,7 @@
           var bad = false;
           if (!empty && el.type === 'email') {
             if (!validEmail(val)) { bad = true; if (note) note.textContent = 'Enter a valid email address.'; }
-            else if (!workEmail(val)) {
+            else if (form.getAttribute('data-form') !== 'data-removal' && !workEmail(val)) {
               bad = true;
               if (note) note.textContent = 'Use your official work email, not a personal one.';
             }
@@ -242,6 +247,29 @@
         var orig = btn.innerHTML;
         btn.disabled = true;
         btn.innerHTML = 'Sending&hellip;';
+
+        /* brochure: fire the download inside the click gesture, so the browser
+           does not block it after the async send resolves */
+        if (form.getAttribute('data-form') === 'brochure') {
+          var brUrl = ov && ov.getAttribute('data-brochure');
+          if (brUrl) {
+            try {
+              var a = document.createElement('a');
+              a.href = brUrl; a.download = ''; a.rel = 'noopener';
+              document.body.appendChild(a); a.click(); a.remove();
+            } catch (_) {}
+          }
+          /* record WHICH brochure was taken, so the lead row and email name it */
+          var brKey = (brUrl || '').split('/').pop().replace('.pdf', '').toLowerCase();
+          var BR_NAMES = { litecone: 'LiteCone', aura: 'AURA', leo: 'LEO', eric: 'ERIC',
+                           aris: 'ARIS', alex: 'ALEX', rio: 'RIO', elsa: 'ELSA',
+                           iris: 'IRIS', marc: 'MARC' };
+          var brName = BR_NAMES[brKey] || (brKey ? brKey.toUpperCase() : '');
+          if (brName) {
+            data.brochure = brName;
+            if (!data.message) data.message = 'Brochure downloaded: ' + brName;
+          }
+        }
 
         var req;
         if (SHEETS_ENDPOINT) {
