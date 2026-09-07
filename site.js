@@ -381,6 +381,26 @@
     });
   })();
 
+  /* ── the scrolling strips: same explicit pause control ──────────────
+     CSS pauses them on hover and focus; keyboard and touch users need a
+     real button, so every strip carrying .mq-ctl gets one.            */
+  (function () {
+    var PAUSE_ICO = '<svg viewBox="0 0 10 12" aria-hidden="true" width="9" height="11">'
+      + '<path d="M1 1h2.6v10H1zM6.4 1H9v10H6.4z" fill="currentColor"/></svg>';
+    var PLAY_ICO = '<svg viewBox="0 0 12 12" aria-hidden="true" width="9" height="11">'
+      + '<path d="M2 1l8 5-8 5z" fill="currentColor"/></svg>';
+    document.querySelectorAll('.mq-ctl').forEach(function (btn) {
+      var strip = btn.parentElement;
+      var what = (btn.getAttribute('aria-label') || 'Pause the strip').replace(/^Pause the /, '');
+      btn.addEventListener('click', function () {
+        var paused = strip.classList.toggle('paused');
+        btn.setAttribute('aria-pressed', paused ? 'true' : 'false');
+        btn.setAttribute('aria-label', (paused ? 'Play the ' : 'Pause the ') + what);
+        btn.innerHTML = paused ? PLAY_ICO : PAUSE_ICO;
+      });
+    });
+  })();
+
   /* ── harden every off-site link against reverse tabnabbing ─────────── */
   document.querySelectorAll('a[target="_blank"], a[href^="http"]').forEach(function (a) {
     if (a.host && a.host !== location.host) a.setAttribute('rel', 'noopener noreferrer');
